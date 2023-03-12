@@ -1,0 +1,24 @@
+.up {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.down {
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 5px 10px;
+  border: 0.25px solid rgb(255, 162, 162);
+  border-radius: 15px;
+  color: rgb(250, 49, 49);
+}
+
+.btn:hover {
+  background-color: rgb(250, 49, 49);
+  color: white;
+  cursor: pointer;
+}

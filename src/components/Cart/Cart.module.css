@@ -1,0 +1,8 @@
+.main {
+  background-color: rgb(253, 249, 249);
+  margin-top: 10%;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px rgba(89, 184, 12, 0.2);
+  z-index: 2000;
+}

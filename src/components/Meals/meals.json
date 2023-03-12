@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "title": "Sushi",
+      "description": "Finest fish and veggies",
+      "price": "22.99"
+    },
+    {
+      "title": "Schnitzel",
+      "description": "A german specialty",
+      "price": "16.50"
+    },
+    {
+      "title": "Burger",
+      "description": "Finest fish and veggies",
+      "price": "10.11"
+    },
+    {
+      "title": "GhormeSabzi",
+      "description": "A best food of iran",
+      "price": "50.22"
+    }
+  ]
+}

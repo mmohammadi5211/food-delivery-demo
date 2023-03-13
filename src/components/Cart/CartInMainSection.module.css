@@ -1,0 +1,23 @@
+.main {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.cartSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-right: 25rem;
+}
+p {
+  margin: 0;
+}
+h3 {
+  margin: 0;
+}

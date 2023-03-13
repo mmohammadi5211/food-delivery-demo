@@ -1,3 +1,4 @@
+import { useFoods } from '../../context/FoodContext';
 import TotlaAmount from '../UI/TotalAmount';
 import Backdrop from '../backDrop/BackDrop';
 import Cart from './Cart';
@@ -8,6 +9,7 @@ interface Props {
   handleShow: () => void;
 }
 const ShoppingCart = (props: Props) => {
+  const foods = useFoods();
   return (
     <>
       <Backdrop
@@ -16,12 +18,12 @@ const ShoppingCart = (props: Props) => {
       />
       <div className={classes.main}>
         <Cart>
-          <>
+          {foods?.map((food) => (
             <div className={classes.section}>
               <div className={classes.left}>
-                <h4>Sushi</h4>
+                <h4>{food.title}</h4>
                 <div className={classes.price}>
-                  <p>$22.99</p>
+                  <p>${food.price}</p>
                   <div className={classes.count}>x 1</div>
                 </div>
               </div>
@@ -30,9 +32,10 @@ const ShoppingCart = (props: Props) => {
                 <div className={classes.minus}>-</div>
               </div>
             </div>
-            <hr />
-            <TotlaAmount close={props.handleShow} />
-          </>
+          ))}
+
+          <hr />
+          <TotlaAmount close={props.handleShow} />
         </Cart>
       </div>
     </>

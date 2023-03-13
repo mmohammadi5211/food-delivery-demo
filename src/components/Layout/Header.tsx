@@ -8,6 +8,12 @@ const Header = () => {
   };
   return (
     <>
+      {showCart && (
+        <ShoppingCart
+          show={showCart}
+          handleShow={handleShowCart}
+        />
+      )}
       <div className={classes.header}>
         <h1>Food Delivery</h1>
         <div
@@ -16,12 +22,6 @@ const Header = () => {
           <p>Your Cart 0</p>
         </div>
       </div>
-      {showCart && (
-        <ShoppingCart
-          show={showCart}
-          handleShow={handleShowCart}
-        />
-      )}
     </>
   );
 };

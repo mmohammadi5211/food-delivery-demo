@@ -1,4 +1,6 @@
+import { count } from 'console';
 import { type } from 'os';
+import { title } from 'process';
 import { useContext, useReducer, createContext, Dispatch } from 'react';
 
 const FoodsContext = createContext<InitProps[] | null>(null);
@@ -20,24 +22,95 @@ export function FoodsProvider({ children }: FoodProps) {
   );
 }
 
-type Action = {
-  type: string;
-  id: number;
-  title: string;
-  price: string;
-};
+type Action =
+  | {
+      type: 'added';
+      id: number;
+      title: string;
+      price: string;
+      count: number;
+    }
+  | {
+      type: 'increment';
+      id?: number;
+    }
+  | {
+      type: 'decrement';
+      id?: number;
+    };
 
 const foodsReducer = (foods: InitProps[], action: Action): InitProps[] => {
   switch (action.type) {
     case 'added': {
-      return [
-        ...foods,
-        {
-          id: action.id,
-          title: action.title,
-          price: action.price,
-        },
-      ];
+      // const existingCartItemIndex = foods.findIndex(
+      //   (item) => item.id === action.id
+      // );
+      // const existingCartItem = foods[existingCartItemIndex];
+      // let updatedItems;
+      // if (existingCartItem) {
+      //   const updatedItem = {
+      //     ...existingCartItem,
+      //     count: action.count + (existingCartItem?.count ?? 0),
+      //   };
+
+      //   updatedItems = [...foods];
+      //   updatedItems[existingCartItemIndex] = updatedItem;
+      //   return updatedItems;
+      // } else {
+      //   return [
+      //     ...foods,
+      //     {
+      //       id: action.id,
+      //       title: action.title,
+      //       price: action.price,
+      //       count: action.count,
+      //     },
+      //   ];
+      // }
+
+      const exitsFoodIndex = foods.findIndex((i) => i.id === action.id);
+      const exitsFood = foods[exitsFoodIndex];
+
+      if (exitsFood) {
+        const items2 = foods.map((food) => {
+          if (food.id === action.id) {
+            return { ...food, count: (food?.count ?? 0) + 1 };
+          } else {
+            return food;
+          }
+        });
+        return items2;
+      } else {
+        return [
+          ...foods,
+          {
+            id: action.id,
+            title: action.title,
+            price: action.price,
+            count: action.count,
+          },
+        ];
+      }
+    }
+    case 'increment': {
+      const items = foods.map((i) => {
+        if (i.id === action.id) {
+          return { ...i, count: (i?.count ?? 0) + 1 };
+        } else {
+          return i;
+        }
+      });
+      return items;
+    }
+    case 'decrement': {
+      let items1 = foods.map((i) => {
+        if (i.id === action.id) {
+          return { ...i, count: (i?.count ?? 0) - 1 };
+        } else {
+          return i;
+        }
+      });
+      return items1.filter((p) => (p?.count ?? 0) > 0);
     }
     default: {
       throw Error('error');
@@ -46,9 +119,10 @@ const foodsReducer = (foods: InitProps[], action: Action): InitProps[] => {
 };
 
 type InitProps = {
-  id: number;
-  title: string;
-  price: string;
+  id?: number;
+  title?: string;
+  price?: string;
+  count?: number;
 };
 const initialFoods: InitProps[] = [];
 

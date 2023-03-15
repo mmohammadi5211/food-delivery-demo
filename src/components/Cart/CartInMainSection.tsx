@@ -1,9 +1,10 @@
 import Cart from './Cart';
 import classes1 from './CartInMainSection.module.css';
 import data from '../Meals/meals.json';
-import { useFoodsDispatch } from '../../context/FoodContext';
+import { useFoods, useFoodsDispatch } from '../../context/FoodContext';
 const CartInMainSection = () => {
   const dispatch = useFoodsDispatch();
+  const foods = useFoods();
   return (
     <>
       <div className={classes1.main}>
@@ -26,6 +27,7 @@ const CartInMainSection = () => {
                             id: food.id,
                             title: food.title,
                             price: food.price,
+                            count: 1,
                           });
                         }
                       }}>
